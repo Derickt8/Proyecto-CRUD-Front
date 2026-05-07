@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const API_URL = "http://localhost:3000/products";
 
@@ -9,10 +9,19 @@ const initialForm = {
   isActive: true,
 };
 
-export default function ProductForm() {
+export default function ProductForm({ productToEdit, setProductToEdit }) {
   const [form, setForm] = useState(initialForm);
   const [status, setStatus] = useState(null); // null | "loading" | "success" | "error"
   const [errorMsg, setErrorMsg] = useState("");
+
+  useEffect(() => {
+    if (productToEdit) {
+      setForm(productToEdit);
+      setStatus(null);
+    } else {
+      setForm(initialForm);
+    }
+  }, [productToEdit]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -33,8 +42,11 @@ export default function ProductForm() {
         price: parseFloat(form.price),
       };
 
-      const res = await fetch(API_URL, {
-        method: "POST",
+      const isEditing = !!productToEdit;
+      const url = isEditing ? `${API_URL}/${productToEdit.id}` : API_URL;
+
+      const res = await fetch(url, {
+        method: isEditing ? "PUT" : "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
@@ -45,7 +57,11 @@ export default function ProductForm() {
       }
 
       setStatus("success");
-      setForm(initialForm);
+      if (isEditing) {
+        setProductToEdit(null);
+      } else {
+        setForm(initialForm);
+      }
       setTimeout(() => setStatus(null), 3000);
     } catch (err) {
       setStatus("error");
@@ -267,7 +283,7 @@ export default function ProductForm() {
       <div className="shell">
         <div className="card">
           <p className="eyebrow">Nest CRUD · Products</p>
-          <h1>Nuevo <em>producto</em></h1>
+          <h1>{productToEdit ? "Editar" : "Nuevo"} <em>producto</em></h1>
 
           <form onSubmit={handleSubmit}>
             <div className="field">
@@ -322,19 +338,32 @@ export default function ProductForm() {
               </span>
             </div>
 
-            <button className="btn" type="submit" disabled={status === "loading"}>
-              {status === "loading" ? (
-                <><span className="spinner" />Enviando...</>
-              ) : (
-                "Crear producto"
+            <div style={{ display: 'flex', gap: '12px' }}>
+              <button className="btn" type="submit" disabled={status === "loading"}>
+                {status === "loading" ? (
+                  <><span className="spinner" />Guardando...</>
+                ) : (
+                  productToEdit ? "Guardar cambios" : "Crear producto"
+                )}
+              </button>
+              {productToEdit && (
+                <button 
+                  className="btn" 
+                  type="button" 
+                  onClick={() => setProductToEdit(null)}
+                  style={{ background: '#2a2a2a', color: '#f0f0f0' }}
+                  disabled={status === "loading"}
+                >
+                  Cancelar
+                </button>
               )}
-            </button>
+            </div>
           </form>
 
           {status === "success" && (
             <div className="feedback success">
               <span className="dot" />
-              Producto creado correctamente.
+              {productToEdit ? "Producto actualizado correctamente." : "Producto creado/actualizado correctamente."}
             </div>
           )}
 
