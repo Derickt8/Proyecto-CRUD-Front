@@ -1,0 +1,64 @@
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: nest_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: nest_crud_demo
+    ports:
+      - '5433:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: nest_rabbitmq
+    restart: always
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+
+  backend:
+    build: ./Proyecto-CRUD-Backend-main
+    container_name: nest_backend
+    restart: always
+    ports:
+      - '3000:3000'
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USERNAME: postgres
+      DB_PASSWORD: 12345
+      DB_DATABASE: nest_crud_demo
+      RABBITMQ_URL: amqp://rabbitmq:5672
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY:-}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET:-}
+      GOOGLE_REFRESH_TOKEN: ${GOOGLE_REFRESH_TOKEN:-}
+      DRIVE_ROOT_FOLDER_ID: ${DRIVE_ROOT_FOLDER_ID:-}
+      GOOGLE_CLIENT_EMAIL: ${GOOGLE_CLIENT_EMAIL:-}
+      GOOGLE_PRIVATE_KEY: ${GOOGLE_PRIVATE_KEY:-}
+    env_file:
+      - ./Proyecto-CRUD-Backend-main/.env
+    depends_on:
+      - db
+      - rabbitmq
+
+  frontend:
+    build: ./Proyecto-CRUD-Front-dev
+    container_name: nest_frontend
+    restart: always
+    ports:
+      - '5173:5173'
+    environment:
+      - VITE_API_URL=http://localhost:3000
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:

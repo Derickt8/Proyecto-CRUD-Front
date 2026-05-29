@@ -1,5 +1,9 @@
 import { PartialType } from '@nestjs/mapped-types';
 import { CreateProductDto } from './create-product.dto';
+import { IsNotEmpty, IsString } from 'class-validator';
 
-// PartialType hace que todos los campos sean opcionales
-export class UpdateProductDto extends PartialType(CreateProductDto) {}
+export class UpdateProductDto extends PartialType(CreateProductDto) {
+  @IsNotEmpty({ message: 'La descripción es obligatoria' })
+  @IsString()
+  descripcion: string;
+}

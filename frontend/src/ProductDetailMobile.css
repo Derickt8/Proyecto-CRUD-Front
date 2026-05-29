@@ -1,0 +1,392 @@
+.pdp__container {
+  font-family: inherit;
+  background-color: var(--color-bg);
+  min-height: 100vh;
+  padding-bottom: 80px;
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  color: var(--color-text);
+  overflow-x: hidden;
+}
+
+/* HERO MEDIA SECTION */
+.pdp__hero {
+  position: relative;
+  width: 100%;
+  height: 210px;
+  background-color: var(--color-border);
+}
+
+.pdp__hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pdp__hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.pdp__hero-top-nav {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+}
+
+.pdp__icon-btn-dark {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+}
+
+.pdp__nav-right {
+  display: flex;
+  gap: 12px;
+}
+
+.pdp__more-options {
+  position: relative;
+}
+
+.pdp__notification-dot {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-negative-text);
+}
+
+.pdp__play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+}
+
+.pdp__hero-badge {
+  position: absolute;
+  bottom: 12px;
+  left: 16px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* SECTION CARDS */
+.pdp__section-card {
+  background-color: var(--color-card);
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid var(--color-border);
+  margin: 8px 16px;
+}
+
+/* PRICING AND TITLE AREA */
+.pdp__price {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--color-text);
+}
+
+.pdp__inline-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.pdp__text-secondary {
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+.pdp__btn-outline-pill {
+  padding: 4px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 500;
+  background: transparent;
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.pdp__trust-badge {
+  font-size: 12px;
+  color: var(--color-positive-text);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.pdp__product-title {
+  font-size: 14px;
+  color: var(--color-muted);
+  line-height: 1.4;
+}
+
+/* SUPPLIER CARD */
+.pdp__supplier-card {
+  background-color: var(--color-light);
+  border-radius: 14px;
+  padding: 16px;
+  margin: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pdp__supplier-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pdp__supplier-name {
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--color-text);
+}
+
+.pdp__supplier-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.pdp__badge-audited {
+  background-color: var(--color-s2);
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 9999px;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.pdp__star-rating {
+  color: var(--color-s2);
+  font-weight: 500;
+}
+
+.pdp__chevron {
+  color: var(--color-muted);
+}
+
+/* TABBED NAVIGATION */
+.pdp__tabs {
+  display: flex;
+  background-color: var(--color-bg);
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding: 0 16px;
+  margin-bottom: 8px;
+}
+
+.pdp__tab {
+  flex: 1;
+  text-align: center;
+  padding: 12px 8px;
+  font-size: 14px;
+  color: var(--color-muted);
+  cursor: pointer;
+  white-space: nowrap;
+  border-bottom: 3px solid transparent;
+}
+
+.pdp__tab--active {
+  color: var(--color-text);
+  font-weight: 600;
+  border-bottom-color: var(--color-primary);
+}
+
+/* CONTENT SECTIONS */
+.pdp__section-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--color-text);
+}
+
+.pdp__payment-badges {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.pdp__payment-badge {
+  background-color: var(--color-light);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  color: var(--color-muted);
+}
+
+.pdp__guarantee-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pdp__guarantee-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.pdp__check-icon {
+  color: var(--color-positive-text);
+  margin-top: 2px;
+}
+
+/* GRIDS AND LISTS */
+.pdp__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 12px;
+  column-gap: 16px;
+}
+
+.pdp__grid-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pdp__key {
+  font-size: 12px;
+  color: var(--color-muted);
+}
+
+.pdp__value {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.pdp__divider {
+  height: 0.5px;
+  background-color: var(--color-border);
+  margin: 12px 0;
+}
+
+.pdp__list-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 0.5px solid var(--color-border);
+}
+.pdp__list-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* STICKY BOTTOM ACTION BAR */
+.pdp__bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  height: 64px;
+  background-color: var(--color-card);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  gap: 12px;
+  z-index: 3;
+}
+
+.pdp__action-chat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  min-width: 48px;
+}
+
+.pdp__chat-icon {
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pdp__chat-text {
+  font-size: 10px;
+  color: var(--color-text);
+}
+
+.pdp__action-btns {
+  display: flex;
+  flex: 1;
+  gap: 8px;
+}
+
+.pdp__btn-ghost-pill {
+  flex: 1;
+  padding: 10px 16px;
+  border: 1px solid var(--color-border);
+  background-color: transparent;
+  color: var(--color-text);
+  border-radius: 9999px;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.pdp__btn-primary-pill {
+  flex: 1;
+  padding: 10px 16px;
+  border: none;
+  background-color: var(--color-primary);
+  color: #fff;
+  border-radius: 9999px;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+}

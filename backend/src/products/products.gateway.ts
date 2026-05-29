@@ -19,11 +19,11 @@ export class ProductsGateway
   @WebSocketServer() server: Server;
   private logger: Logger = new Logger('ProductsGateway');
 
-  afterInit(server: Server) {
+  afterInit() {
     this.logger.log('WebSocket Gateway Initialized');
   }
 
-  handleConnection(client: Socket, ...args: any[]) {
+  handleConnection(client: Socket) {
     this.logger.log(`Client connected: ${client.id}`);
   }
 
@@ -39,7 +39,7 @@ export class ProductsGateway
     this.server.emit('productUpdated', product);
   }
 
-  emitProductDeleted(id: number) {
+  emitProductDeleted(id: string) {
     this.server.emit('productDeleted', { id });
   }
 }
